@@ -3,6 +3,8 @@ import Pen from "@/assets/icons/pen.svg";
 import Image from "next/image";
 import { ButtonBasic } from "../ui/ButtonBasic";
 import { useRef } from "react";
+import { BasicNecessities } from "../layouts/BasicNecessities";
+import { BudgetPlanning } from "../layouts/BudgetPlanning";
 export const HomeHero = () => {
   const sectionRef = useRef<null | HTMLDivElement>(null);
   const handleScroll = () => {
@@ -29,78 +31,8 @@ export const HomeHero = () => {
         dir="rtl"
         ref={sectionRef}
       >
-        <div className="flex flex-col justify-baseline p-8! items-start w-1/2 h-full  bg-amber-200/50">
-          <div className="w-fit flex justify-between items-start h-10 gap-2">
-            <label className="text-4xl font-bold h-full">
-              چند روز قراره بمونی؟
-            </label>
-            <input type="number" className="bg-white! w-16 h-full p-0 m-0 " />
-          </div>
-          <hr className="text-black! bg-black! w-full h-2  my-2!" />
-          <div className="flex-col flex gap-3">
-            <p className="text-4xl font-bold h-full">لیست لوازم:</p>
-            <div className="w-auto flex justify-between items-start h-10 gap-2">
-              <input
-                type="checkbox"
-                className="bg-white! w-16 h-full p-0 m-0 focus:outline-none!"
-              />
-              <input
-                type="text"
-                dir="rtl"
-                className=" w-auto h-full p-0 m-0 text-2xl! font-bold! border-b-2!  focus:border-b-2! focus:outline-none!   "
-                defaultValue={"جوراب"}
-              />
-            </div>
-            <div className="w-auto flex justify-between items-start h-10 gap-2">
-              <input
-                type="checkbox"
-                className="bg-white! w-16 h-full p-0 m-0 focus:outline-none!"
-              />
-              <input
-                type="text"
-                dir="rtl"
-                className=" w-auto h-full p-0 m-0 text-2xl! font-bold! border-b-2!  focus:border-b-2! focus:outline-none!   "
-                defaultValue={"جوراب"}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col justify-baseline p-8! items-start w-1/2 h-full  bg-amber-200/50">
-          <div className="w-fit flex justify-between items-start h-10 gap-2">
-            <label className="text-4xl font-bold h-full">
-              چند روز قراره بمونی؟
-            </label>
-            <input type="number" className="bg-white! w-16 h-full p-0 m-0 " />
-          </div>
-          <hr className="text-black! bg-black! w-full h-2  my-2!" />
-          <div className="flex-col flex gap-3">
-            <p className="text-4xl font-bold h-full">لیست لوازم:</p>
-            <div className="w-auto flex justify-between items-start h-10 gap-2">
-              <input
-                type="checkbox"
-                className="bg-white! w-16 h-full p-0 m-0 focus:outline-none!"
-              />
-              <input
-                type="text"
-                dir="rtl"
-                className=" w-auto h-full p-0 m-0 text-2xl! font-bold! border-b-2!  focus:border-b-2! focus:outline-none!   "
-                defaultValue={"جوراب"}
-              />
-            </div>
-            <div className="w-auto flex justify-between items-start h-10 gap-2">
-              <input
-                type="checkbox"
-                className="bg-white! w-16 h-full p-0 m-0 focus:outline-none!"
-              />
-              <input
-                type="text"
-                dir="rtl"
-                className=" w-auto h-full p-0 m-0 text-2xl! font-bold! border-b-2!  focus:border-b-2! focus:outline-none!   "
-                defaultValue={"جوراب"}
-              />
-            </div>
-          </div>
-        </div>
+        <BasicNecessities />
+        <BudgetPlanning />
       </div>
     </div>
   );
