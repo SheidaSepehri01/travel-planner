@@ -1,0 +1,96 @@
+.container {
+  width: 50%;
+  height: 100%;
+  background-color: rgb(254 226 226);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 2.5rem;
+  gap: 0.5rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  height: 100%;
+}
+
+.content {
+  width: fit-content;
+  min-width: 30rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.input {
+  background-color: white;
+  width: 4rem;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.costItem {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background-color: rgb(254 243 199);
+  backdrop-filter: blur(4px);
+  width: 90%;
+}
+
+.costInput {
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-bottom: 2px solid rgb(120 53 15);
+  text-align: center;
+  width: 100%;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  justify-content: flex-start;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border-bottom: 2px solid rgb(120 53 15);
+  padding: 0.5rem;
+}
+
+.addIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+.trashIcon {
+  @apply flex justify-center items-center h-full w-fit;
+}
