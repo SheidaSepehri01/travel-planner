@@ -1,5 +1,4 @@
 import { useBudgetStore } from "../../stores/budgetStore";
-import plus from "../../assets/icons/add_circle.svg";
 import Image from "next/image";
 import { Line } from "../ui/Line";
 import styles from "../../styles/modules/BudgetPlanning.module.css";
@@ -56,7 +55,13 @@ export const BudgetPlanning = () => {
           onClick={() => addCost({ name: "", amount: 0 })}
           className={styles.addButton}
         >
-          <Image src={plus} alt="add cost" className={styles.addIcon} />
+          <Image
+            src={"/assets/icons/add_circle.svg"}
+            alt="add cost"
+            className={styles.addIcon}
+            width={100}
+            height={100}
+          />
           هزینه جدید
         </button>
         <Line />

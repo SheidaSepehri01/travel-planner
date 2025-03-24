@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import heroBackground from "../../assets/images/DALL·E 2025-03-24 13.34.39 - A vintage-style map with an aged parchment texture, featuring intricate hand-drawn details of mountains, rivers, and old-world cities. The map is long.webp";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 export const HeroBackground = () => {
@@ -35,10 +34,15 @@ export const HeroBackground = () => {
     <div className="p-0 m-0 overflow-hidden absolute top-0  flex flex-col justify-center items-center h-screen w-screen z-10">
       <Image
         ref={mapRef}
-        src={heroBackground}
+        src={
+          "/assets/images/DALL·E 2025-03-24 13.34.39 - A vintage-style map with an aged parchment texture, featuring intricate hand-drawn details of mountains, rivers, and old-world cities. The map is long.webp"
+        }
+        width={1000}
+        height={1000}
         alt="hero background"
         className="w-[150%] h-[120%] scale-x-110 duration-150"
       />
+      <div className="absolute bottom-0 left-0 w-full h-5  bg-[url('/assets/icons/toys_fan.svg')] bg-repeat-x"></div>
     </div>
   );
 };
