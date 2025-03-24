@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import heroBackground from "../../assets/images/christine-roy-ir5MHI6rPg0-unsplash.jpg";
+import heroBackground from "../../assets/images/DALL·E 2025-03-24 13.34.39 - A vintage-style map with an aged parchment texture, featuring intricate hand-drawn details of mountains, rivers, and old-world cities. The map is long.webp";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 export const HeroBackground = () => {
@@ -13,19 +13,11 @@ export const HeroBackground = () => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
       if (!map) return;
-      // Get map size
-      // const mapWidth = map.offsetWidth;
-      // const mapHeight = map.offsetHeight;
-
-      // Calculate max movement so edges don’t show
-      //   const maxX = (mapWidth - innerWidth) / 2;
-      //   const maxY = (mapHeight - innerHeight) / 2;
 
       const moveX = (clientX / innerWidth - 0.3) * 25;
       const moveY = (clientY / innerHeight - 0.3) * 100;
 
       gsap.to(map, {
-        blur: 40,
         x: moveX,
         y: moveY,
         ease: "power2.out",

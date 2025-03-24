@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { BasicNecessities } from "../layouts/BasicNecessities";
 import { BudgetPlanning } from "../layouts/BudgetPlanning";
 import { HeroBackground } from "../layouts/HeroBackground";
+import { VerticalPagination } from "../layouts/VerticalPagination";
 export const HomeHero = () => {
   const sectionRef = useRef<null | HTMLDivElement>(null);
   const handleScroll = () => {
@@ -37,6 +38,7 @@ export const HomeHero = () => {
       >
         <BasicNecessities />
         <BudgetPlanning />
+        <VerticalPagination activeIndex={1} count={4} onClick={() => {}} />
       </div>
     </div>
   );
