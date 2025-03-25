@@ -34,9 +34,7 @@ export const HeroBackground = () => {
     <div className="p-0 m-0 overflow-hidden absolute top-0  flex flex-col justify-center items-center h-screen w-screen z-10">
       <Image
         ref={mapRef}
-        src={
-          "/assets/images/DALL·E 2025-03-24 13.34.39 - A vintage-style map with an aged parchment texture, featuring intricate hand-drawn details of mountains, rivers, and old-world cities. The map is long.webp"
-        }
+        src={"/assets/images/map.webp"}
         width={1000}
         height={1000}
         alt="hero background"

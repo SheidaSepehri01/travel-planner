@@ -5,14 +5,19 @@ import { Line } from "../ui/Line";
 import { DeleteButton } from "../ui/DeleteButton";
 import Image from "next/image";
 import styles from "../../styles/modules/BasicNecessities.module.css";
-
+import { usePlanDaysStore } from "../../stores/planDays";
 export const BasicNecessities = () => {
   const { items, addItems, removeItem, updateItem } = usePackingListStore();
+  const { setPlan } = usePlanDaysStore();
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <label className={styles.title}>چند روز قراره بمونی؟</label>
-        <input type="number" className={styles.checkbox} />
+        <input
+          type="number"
+          className={styles.checkbox}
+          onChange={(e) => setPlan(Number(e.target.value))}
+        />
       </div>
       <Line />
       <p className={styles.listTitle}>لیست لوازم:</p>

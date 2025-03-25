@@ -13,6 +13,8 @@ export const DeleteButton = (props: propType) => {
         src={"/assets/icons/delete.svg"}
         alt="remove "
         className="flex justify-center items-center h-full w-fit"
+        width={20}
+        height={20}
       />
     </button>
   );

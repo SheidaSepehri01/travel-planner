@@ -39,7 +39,7 @@ export const HomeHero = () => {
       </div>
       <div className="h-fit w-full " ref={sectionRef}>
         <div
-          className=" h-screen flex justify-start items-start  text-black"
+          className=" h-screen flex justify-start items-start  text-black bg-[url('/assets/images/texture.jpg')] bg-cover bg-center bg-no-repeat"
           dir="rtl"
         >
           <BasicNecessities />
