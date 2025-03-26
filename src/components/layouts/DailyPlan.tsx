@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { Line } from "../ui/Line";
 import { useState } from "react";
@@ -81,6 +82,33 @@ export const DailyPlan = () => {
             </div>
           ))}
         </div>
+      </div>
+      <div
+        className={clsx(
+          "w-full flex justify-center relative bottom-2 gap-1  items-center",
+          plan.length ? "visible" : "hidden"
+        )}
+        dir="rtl"
+      >
+        <input
+          type="text"
+          className="  bg-amber-50/40 text-2xl  text-center p-2 w-30 border-b-2 border-amber-900"
+          placeholder="اسم سفر"
+        />
+        <button
+          className={clsx(
+            "text-2xl w-28 font-bold h-full hover:bg-amber-900/40 transition-all duration-300 flex justify-center items-center gap-2"
+          )}
+          onClick={() => {}}
+        >
+          <Image
+            src={"/assets/icons/pen.svg"}
+            alt="save"
+            width={30}
+            height={30}
+          />
+          ذخیره
+        </button>
       </div>
     </div>
   );

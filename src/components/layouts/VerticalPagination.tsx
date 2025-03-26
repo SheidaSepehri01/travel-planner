@@ -1,4 +1,6 @@
+"use client";
 import clsx from "clsx";
+import styles from "../../styles/modules/VerticalPagination.module.css";
 
 export const VerticalPagination = (props: {
   count: number;
@@ -10,18 +12,16 @@ export const VerticalPagination = (props: {
     .fill(0)
     .map((_, index) => index);
   return (
-    <div
-      className={`flex flex-col gap-4 w-10 h-screen justify-center items-center sticky top-0 left-2 z-50 `}
-    >
+    <div className={styles.container}>
       {pageArray.map((number) => (
         <div
           onClick={() => onClick(number)}
           key={number}
           className={clsx(
-            "!bg-black  rounded-full hover:w-3 hover:h-3 transition-all duration-300",
-            activeIndex === number ? "h-3 w-3" : "h-1 w-1"
+            styles.dot,
+            activeIndex === number ? styles.active : styles.inactive
           )}
-        ></div>
+        />
       ))}
     </div>
   );

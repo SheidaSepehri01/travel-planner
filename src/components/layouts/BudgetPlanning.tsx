@@ -1,3 +1,4 @@
+"use client";
 import { useBudgetStore } from "../../stores/budgetStore";
 import Image from "next/image";
 import { Line } from "../ui/Line";
