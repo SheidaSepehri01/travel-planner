@@ -26,11 +26,14 @@ export const Header = () => {
               className="fill-black outline-black text-black"
             />
           </button>
-          <button className="text-2xl font-bold">
+          <button
+            className="text-2xl font-bold"
+            onClick={() => router.push("/plans")}
+          >
             {" "}
             <Image
               src={"/assets/icons/book.svg"}
-              alt="add"
+              alt="previous plans"
               width={30}
               height={30}
               className="fill-black outline-black text-black"

@@ -35,10 +35,15 @@ export const HeroBackground = () => {
       <Image
         ref={mapRef}
         src={"/assets/images/map.webp"}
-        width={1000}
-        height={1000}
+        width={1792}
+        height={1024}
         alt="hero background"
-        className="w-[150%]   h-[120%] duration-150"
+        className="w-[150%]   duration-150"
+        fetchPriority="high"
+        priority={true}
+        placeholder="blur"
+        blurDataURL="/assets/images/mapblur.jpg"
+        sizes="100vw"
       />
       <div className=" border-t-2 border-[#1c0d0c] bg-amber-200/10 backdrop-blur-sm absolute bottom-0 left-0 w-full h-6  bg-[url('/assets/icons/toys_fan.svg')] bg-repeat-x"></div>
     </div>
