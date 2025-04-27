@@ -1,12 +1,32 @@
 "use client";
+
+import { cn } from "../../lib/utils";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 export const PreviousPlans = () => {
   return (
     <div className="w-full h-full flex flex-col justify-center items-center">
-      <div className="h-36 w-52  flex flex-col justify-center bg-amber-300 border-2 border-amber-500 text-black rounded-lg items-start p-4">
-        <h1 className=" w-full text-center">italy</h1>
-        <p>3 days</p>
-        <p>4500$</p>
-      </div>
+      <Card
+        className={cn(
+          "h-[15em] w-[15em]  flex flex-col justify-center  border-2  text-black rounded-lg items-start p-4"
+        )}
+      >
+        <CardHeader className="w-full">
+          <CardTitle>italy</CardTitle>
+          <CardDescription>
+            Deploy your new project in one-click.
+          </CardDescription>
+        </CardHeader>
+        <CardFooter className="w-full flex justify-between items-end">
+          <p className="w-1/2 text-center">3 days</p>
+          <p className="border-l-2 w-1/2 text-center border-gray-400 ">4500$</p>
+        </CardFooter>
+      </Card>
     </div>
   );
 };

@@ -10,7 +10,7 @@ export const DailyPlan = () => {
   const [showPlan, setShowPlan] = useState<number | null>(1);
   const { plan, updatePlan } = usePlanDaysStore();
   return (
-    <div className="w-full flex flex-col items-center gap-2 bg-[url('/assets/images/texture.webp')] text-black h-screen  bg-cover bg-center bg-no-repeat">
+    <div className="w-full flex flex-col items-center gap-2  text-black h-full ">
       <h1 className="text-4xl font-bold text-center">برنامه روزانه</h1>
       <Line />
       <div className="w-full h-screen overflow-y-auto">

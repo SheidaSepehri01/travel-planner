@@ -3,14 +3,16 @@ import { useRef } from "react";
 import { HeroBackground } from "../layouts/HeroBackground";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import dynamic from "next/dynamic";
+import Link from "next/link";
+import { Playwrite_RO } from "next/font/google";
+import { useAuthStore } from "../../stores/auth";
+const playwrite = Playwrite_RO({
+  variable: "--font-playwrite",
+});
 export const HomeHero = () => {
   const sectionRef = useRef<null | HTMLDivElement>(null);
   const headerRef = useRef<null | HTMLDivElement>(null);
-  const handleScroll = () => {
-    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
+  const { user } = useAuthStore();
   useGSAP(() => {
     gsap.from(headerRef.current, {
       opacity: 0,
@@ -20,35 +22,27 @@ export const HomeHero = () => {
     });
   }, [sectionRef, headerRef]);
 
-  const BelowTheFold = dynamic(
-    () => import("../layouts/BelowTheFold").then((mod) => mod.BelowTheFold),
-    {
-      ssr: false,
-      loading: () => <div>... loading</div>,
-    }
-  );
   return (
-    <div className="w-full p-0 m-0 h-fit  grid grid-cols-1 grid-rows-[93vh_100vh_100vh] gap-0  overflow-hidden">
-      <div className="max-h-screen h-fit w-full flex  justify-center items-center ">
+    <div className="w-screen p-0 m-0 h-screen  grid grid-cols-1 grid-rows-1 gap-0  overflow-hidden">
+      <div className="max-h-screen h-full w-full flex  justify-center items-center">
         <HeroBackground />
-        <div className=" w-full h-fit z-50 flex flex-col justify-start relative top-20 left-20 items-start">
-          <h1
-            className="w-full z-50 h-fit font-extrabold font-sans text-black  tracking-tighter"
-            style={{ fontSize: "70px", textAlign: "left" }}
-            ref={headerRef}
-          >
-            Plan Your Next Trip
-          </h1>
-          <button
-            className=" text-black text-2xl px-4 py-2 font-bold"
-            onClick={handleScroll}
-          >
-            start planning now
-          </button>
+        <div className="w-full h-fit absolute top-36 left-5 ">
+          <div className="bg-amber-100/5 relative top-0  backdrop-blur-md rounded-lg w-[50%] p-6 h-64 z-50 flex flex-col justify-start  items-start">
+            <h1
+              className={` ${playwrite.className} w-full z-50 h-fit font-extrabold font-sans text-stone-900  `}
+              style={{ fontSize: "70px", textAlign: "left" }}
+              ref={headerRef}
+            >
+              Traveling Journal
+            </h1>
+            <Link
+              className=" text-black text-2xl px-4 py-2 mt-5"
+              href={user ? "/addPlan" : "/signUp"}
+            >
+              start planning your next trip now
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className="w-full h-fit mt-4 overflow-hidden">
-        <BelowTheFold sectionRef={sectionRef} />
       </div>
     </div>
   );

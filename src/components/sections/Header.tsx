@@ -1,22 +1,37 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
+import { Playwrite_RO } from "next/font/google";
+import { useAuthStore } from "../../stores/auth";
+const playwrite = Playwrite_RO({
+  variable: "--font-playwrite",
+});
 export const Header = () => {
   const router = useRouter();
+  const { user } = useAuthStore();
   return (
     <div
-      className="sticky  top-0 left-0 w-full h-11 flex justify-center bg-amber-100/25
-     backdrop-blur-sm items-center z-50"
+      className="absolute top-0 w-full h-11 flex justify-center
+      items-center z-50"
     >
-      <div className="flex w-full px-3 h-full justify-between items-center text-black">
+      <div className="flex w-full h-full  p-1 backdrop-blur-sm  bg-slate-200/50 px-5  justify-between items-center text-black">
         <button className="text-2xl font-bold" onClick={() => router.push("/")}>
-          traveling journal
+          <Image
+            src={"/assets/icons/home.svg"}
+            alt="home"
+            width={30}
+            height={30}
+          />
         </button>
+        <p className={`text-xl font-semibold font ${playwrite.className}`}>
+          traveling journal
+        </p>
         <div className="flex gap-2">
           <button
             className="text-2xl font-bold"
-            onClick={() => router.push("/addAPlan")}
+            onClick={() =>
+              user ? router.push("/addAPlan") : router.push("/signUp")
+            }
           >
             <Image
               src={"/assets/icons/add_circle.svg"}
@@ -28,7 +43,9 @@ export const Header = () => {
           </button>
           <button
             className="text-2xl font-bold"
-            onClick={() => router.push("/plans")}
+            onClick={() =>
+              user ? router.push("/plans") : router.push("/signUp")
+            }
           >
             {" "}
             <Image
