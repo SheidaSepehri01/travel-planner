@@ -26,11 +26,11 @@ export const HomeHero = () => {
     <div className="w-screen p-0 m-0 h-screen  grid grid-cols-1 grid-rows-1 gap-0  overflow-hidden">
       <div className="max-h-screen h-full w-full flex  justify-center items-center">
         <HeroBackground />
-        <div className="w-full h-fit absolute top-36 left-5 ">
+        <div className="w-full h-fit absolute top-32 left-5 ">
           <div className="bg-amber-100/5 relative top-0  backdrop-blur-md rounded-lg w-[50%] p-6 h-64 z-50 flex flex-col justify-start  items-start">
             <h1
               className={` ${playwrite.className} w-full z-50 h-fit font-extrabold font-sans text-stone-900  `}
-              style={{ fontSize: "70px", textAlign: "left" }}
+              style={{ fontSize: "65px", textAlign: "left" }}
               ref={headerRef}
             >
               Traveling Journal

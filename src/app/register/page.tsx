@@ -1,10 +1,10 @@
 import React from "react";
-import { SignUp } from "../../components/sections/SignUp";
+import { Register } from "../../components/sections/Register";
 
 export default function SignUpPage() {
   return (
     <div>
-      <SignUp />
+      <Register />
     </div>
   );
 }
