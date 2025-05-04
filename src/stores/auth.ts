@@ -14,9 +14,19 @@ export const useAuthStore = create<AuthStoreType>((set) => ({
         password: password,
       });
       set({ user: response.data.name, ApiState: "success" });
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Signup error:", err);
-      set({ error: err?.response?.data?.message, ApiState: "error" });
+      if (axios.isAxiosError(err)) {
+        set({
+          error: err.response?.data.message || "An error occurred",
+          ApiState: "error",
+        });
+      } else {
+        set({
+          error: "An error occurred",
+          ApiState: "error",
+        });
+      }
     }
   },
 }));
