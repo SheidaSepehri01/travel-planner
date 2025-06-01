@@ -5,10 +5,13 @@ import { useState } from "react";
 import clsx from "clsx";
 import { OneDayPlanType } from "../../types/planDays";
 import { usePlanDaysStore } from "../../stores/planDays";
-
-export const DailyPlan = () => {
+type PropTypes = {
+  handleSaveProject: () => void;
+};
+export const DailyPlan = (props: PropTypes) => {
+  const { handleSaveProject } = props;
   const [showPlan, setShowPlan] = useState<number | null>(1);
-  const { plan, updatePlan } = usePlanDaysStore();
+  const { plan, updatePlan, setPlanTitle } = usePlanDaysStore();
   return (
     <div className="w-full flex flex-col items-center gap-2  text-black h-full ">
       <h1 className="text-4xl font-bold text-center">برنامه روزانه</h1>
@@ -94,12 +97,15 @@ export const DailyPlan = () => {
           type="text"
           className="  bg-amber-50/40 text-2xl  text-center p-2 w-30 border-b-2 border-amber-900"
           placeholder="اسم سفر"
+          onChange={(e) => setPlanTitle(e.target.value)}
         />
         <button
           className={clsx(
             "text-2xl w-28 font-bold h-full hover:bg-amber-900/40 transition-all duration-300 flex justify-center items-center gap-2"
           )}
-          onClick={() => {}}
+          onClick={() => {
+            handleSaveProject();
+          }}
         >
           <Image
             src={"/assets/icons/pen.svg"}

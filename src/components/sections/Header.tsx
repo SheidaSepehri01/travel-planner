@@ -30,7 +30,7 @@ export const Header = () => {
           <button
             className="text-2xl font-bold"
             onClick={() =>
-              user ? router.push("/addAPlan") : router.push("/signUp")
+              user ? router.push("/addAPlan") : router.push("/register")
             }
           >
             <Image
@@ -44,7 +44,7 @@ export const Header = () => {
           <button
             className="text-2xl font-bold"
             onClick={() =>
-              user ? router.push("/plans") : router.push("/signUp")
+              user ? router.push("/plans") : router.push("/register")
             }
           >
             {" "}

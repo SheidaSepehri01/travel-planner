@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { cn } from "../../lib/utils";
 import {
   Card,
@@ -8,7 +9,12 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { usePlans } from "../../stores/plans";
 export const PreviousPlans = () => {
+  const { getPlans } = usePlans();
+  useEffect(() => {
+    getPlans();
+  }, []);
   return (
     <div className="w-full h-full flex flex-col justify-center items-center">
       <Card

@@ -14,10 +14,11 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 type propTypes = {
   ApiState: "loading" | "success" | "error" | "idle";
-  registerUser: (username: string, password: string) => void;
+  registerUser: (username: string, password: string) => Promise<boolean>;
 };
 export const SignUpForm = (props: propTypes) => {
   const { ApiState, registerUser } = props;
@@ -37,12 +38,16 @@ export const SignUpForm = (props: propTypes) => {
       path: ["confirmPassword"],
       message: "Passwords do not match",
     });
-  const handleSubmit = (formData: {
+  const router = useRouter();
+  const handleSubmit = async (formData: {
     username: string;
     password: string;
     confirmPassword: string;
   }) => {
-    registerUser(formData.username, formData.password);
+    const success = await registerUser(formData.username, formData.password);
+    if (success) {
+      router.push("/");
+    }
   };
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

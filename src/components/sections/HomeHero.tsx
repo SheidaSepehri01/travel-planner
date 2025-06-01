@@ -37,7 +37,7 @@ export const HomeHero = () => {
             </h1>
             <Link
               className=" text-black text-2xl px-4 py-2 mt-5"
-              href={user ? "/addPlan" : "/signUp"}
+              href={user ? "/addPlan" : "/register"}
             >
               start planning your next trip now
             </Link>

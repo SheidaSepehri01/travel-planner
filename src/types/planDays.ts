@@ -7,6 +7,9 @@ export type OneDayPlanType = {
 
 export type PlanDaysStoreType = {
   plan: OneDayPlanType[] | [];
+  title: string;
+  startDate: string;
+  endDate: string;
   updatePlan: (
     num: number,
     key: "morning" | "afternoon" | "night",
@@ -14,4 +17,7 @@ export type PlanDaysStoreType = {
   ) => void;
   setPlan: (plan: number) => void;
   resetPlan: () => void;
+  setPlanTitle: (title: string) => void;
+  setStartDate: (title: string) => void;
+  setEndDate: (title: string) => void;
 };

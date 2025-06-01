@@ -9,7 +9,7 @@ export const usePackingListStore = create<PackingListStoreType>((set) => ({
   items: [],
   addItems: (text: string) =>
     set((state) => ({
-      items: [...state.items, { id: uuidv4(), text: text, done: false }],
+      items: [...state.items, { id: uuidv4(), title: text, done: false }],
     })),
   removeAllItems: () => set(() => ({ items: [] })),
   updateItem: (val: PackingListType) =>

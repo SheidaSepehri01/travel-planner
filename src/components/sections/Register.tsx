@@ -1,8 +1,6 @@
 "use client";
 import Image from "next/image";
 
-import { Button } from "../ui/button";
-
 import {
   Card,
   CardContent,
@@ -12,16 +10,16 @@ import {
   CardTitle,
 } from "../ui/card";
 import { cn } from "../../lib/utils";
-import Link from "next/link";
 import { useAuthStore } from "../../stores/auth";
 import { useState } from "react";
 import { SignUpForm } from "../layouts/SignUpForm";
 import { LoginForm } from "../layouts/LoginForm";
+import { Button } from "../ui/button";
 
 export const Register = () => {
-  const [formType, setFormType] = useState<"login" | "signup">("signup");
+  const [formType, setFormType] = useState<"login" | "signup">("login");
 
-  const { registerUser, ApiState, error } = useAuthStore();
+  const { registerUser, ApiState, error, loginUser } = useAuthStore();
 
   return (
     <div className="w-full h-screen flex justify-center items-center relative overflow-hidden">
@@ -38,25 +36,48 @@ export const Register = () => {
           )}
         >
           <CardHeader className={cn("w-full")}>
-            <CardTitle>Sign Up</CardTitle>
+            <CardTitle className={cn("w-full h-8 text-center text-xl")}>
+              {" "}
+              {formType === "signup" ? "Sign Up" : "Log in"}
+            </CardTitle>
             <CardDescription>
-              sign up and start planning your trips
+              {formType === "signup"
+                ? "sign up and start planning your trips"
+                : "Welcome back"}
             </CardDescription>
           </CardHeader>
           <CardContent className={cn("w-full")}>
             {formType === "signup" ? (
               <SignUpForm registerUser={registerUser} ApiState={ApiState} />
             ) : (
-              <LoginForm ApiState={ApiState} loginUser={} />
+              <LoginForm ApiState={ApiState} loginUser={loginUser} />
             )}
-          </CardContent>
-          <CardFooter className={cn("w-full mt-4")}>
             {error && <p className="text-red-500">{error}</p>}
-            <div className="w-full  flex justify-end items-center gap-3 p-3">
-              <p>Already have an account?</p>
-              <Button asChild className=" bg-green-300/35">
-                <Link href="/login">Login</Link>
-              </Button>
+          </CardContent>
+          <CardFooter className={cn("w-full mt-4 ")}>
+            <div className="w-full  flex justify-start items-center gap-3 p-3">
+              {formType === "signup" ? (
+                <>
+                  <p>Already have an account?</p>
+                  <Button
+                    className=" bg-green-300/35"
+                    onClick={() => setFormType("login")}
+                  >
+                    Login
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <p>Don&apos;t have an account yet?</p>
+                  <Button
+                    className=" bg-green-300/35"
+                    onClick={() => setFormType("signup")}
+                    variant={"outline"}
+                  >
+                    Sign up
+                  </Button>
+                </>
+              )}
             </div>
           </CardFooter>
         </Card>

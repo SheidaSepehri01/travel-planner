@@ -1,7 +1,7 @@
 export type PackingListType = {
   id: string;
   done: boolean;
-  text: string;
+  title: string;
 };
 export type PackingListStoreType = {
   items: PackingListType[];

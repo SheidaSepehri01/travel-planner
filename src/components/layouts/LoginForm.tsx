@@ -14,10 +14,11 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 type propTypes = {
   ApiState: "loading" | "success" | "error" | "idle";
-  loginUser: (username: string, password: string) => void;
+  loginUser: (username: string, password: string) => Promise<boolean>;
 };
 export const LoginForm = (props: propTypes) => {
   const { ApiState, loginUser } = props;
@@ -30,9 +31,16 @@ export const LoginForm = (props: propTypes) => {
       message: "Password must be at least 6 characters.",
     }),
   });
-
-  const handleSubmit = (formData: { username: string; password: string }) => {
-    loginUser(formData.username, formData.password);
+  const router = useRouter();
+  const handleSubmit = async (formData: {
+    username: string;
+    password: string;
+  }) => {
+    const success = await loginUser(formData.username, formData.password);
+    debugger;
+    if (success) {
+      router.push("/");
+    }
   };
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

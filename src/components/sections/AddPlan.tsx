@@ -1,5 +1,6 @@
 "use client";
 import { usePlanDaysStore } from "../../stores/planDays";
+import { usePlans } from "../../stores/plans";
 import { BasicNecessities } from "../layouts/BasicNecessities";
 import { BudgetPlanning } from "../layouts/BudgetPlanning";
 import { DailyPlan } from "../layouts/DailyPlan";
@@ -7,7 +8,9 @@ import { Input } from "../ui/input";
 import { Line } from "../ui/Line";
 
 export const AddPlan = () => {
-  const { setPlan } = usePlanDaysStore();
+  const { setPlan: AsSetPlanDuration } = usePlanDaysStore();
+
+  const { setPlan } = usePlans();
   return (
     <div className="h-screen  w-full flex flex-col justify-center items-center ">
       <div className="md:w-2/3 w-full   h-[90%]  overflow-auto border border-amber-950 rounded-lg p-10  shadow-md ">
@@ -18,7 +21,7 @@ export const AddPlan = () => {
           <Input
             type="number"
             placeholder="days"
-            onChange={(e) => setPlan(Number(e.target.value))}
+            onChange={(e) => AsSetPlanDuration(Number(e.target.value))}
             className="w-14 p-0 border-2 border-green-950 placeholder:text-green-800/30 placeholder:text-center"
           />
         </div>
@@ -27,7 +30,7 @@ export const AddPlan = () => {
         <BasicNecessities />
 
         <BudgetPlanning />
-        <DailyPlan />
+        <DailyPlan handleSaveProject={() => setPlan()} />
       </div>
     </div>
   );
