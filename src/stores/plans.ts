@@ -7,7 +7,8 @@ import { usePackingListStore } from "./packingListStore";
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 export const usePlans = create<UsePlansType>((set) => ({
-  ApiState: "idle",
+  getPlansApiState: "idle",
+  setPlanApiState: "idle",
   planList: null,
   error: null,
   setPlan: async () => {
@@ -17,23 +18,40 @@ export const usePlans = create<UsePlansType>((set) => ({
 
     const sendData: PlanData = {
       title: title,
-      startDate: "2025-05-30T12:34:56.789Z",
-      endDate: "2025-05-30T12:34:56.789Z",
+      startDate: startDate!,
+      endDate: endDate!,
       budget: totalBudget,
       necessities: items,
       days: plan,
       costs: costs,
     };
-    await axios.post(
-      `${baseURL}/plans/create`,
-      {
-        ...sendData,
-      },
-      { withCredentials: true }
-    );
+    try {
+      const res = await axios.post(
+        `${baseURL}/plans/create`,
+        {
+          ...sendData,
+        },
+        { withCredentials: true }
+      );
+      if (res) {
+        set({
+          setPlanApiState: "success",
+        });
+      }
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        set({
+          setPlanApiState: "error",
+        });
+      } else {
+        set({
+          setPlanApiState: "error",
+        });
+      }
+    }
   },
   getPlans: async () => {
-    set({ ApiState: "loading" });
+    set({ getPlansApiState: "loading" });
     try {
       const response = await axios.get(
         `${baseURL}/plans/get`,
@@ -42,18 +60,22 @@ export const usePlans = create<UsePlansType>((set) => ({
           withCredentials: true,
         }
       );
-      set({ planList: response.data.data, ApiState: "success", error: null });
+      set({
+        planList: response.data.data.plans,
+        getPlansApiState: "success",
+        error: null,
+      });
     } catch (err: unknown) {
       console.error("Get plans error:", err);
       if (axios.isAxiosError(err)) {
         set({
           error: err.response?.data.message || "An error occurred",
-          ApiState: "error",
+          getPlansApiState: "error",
         });
       } else {
         set({
           error: "An error occurred",
-          ApiState: "error",
+          getPlansApiState: "error",
         });
       }
     }

@@ -1,121 +1,111 @@
 "use client";
+
 import Image from "next/image";
-import { Line } from "../ui/Line";
 import { useState } from "react";
 import clsx from "clsx";
 import { OneDayPlanType } from "../../types/planDays";
 import { usePlanDaysStore } from "../../stores/planDays";
-type PropTypes = {
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { ChevronDown } from "lucide-react";
+import { SubmitBtn } from "../ui/SubmitBtn";
+import plans from "../../app/plans/page";
+
+export const DailyPlan = ({
+  handleSaveProject,
+}: {
   handleSaveProject: () => void;
-};
-export const DailyPlan = (props: PropTypes) => {
-  const { handleSaveProject } = props;
+}) => {
   const [showPlan, setShowPlan] = useState<number | null>(1);
-  const { plan, updatePlan, setPlanTitle } = usePlanDaysStore();
+  const { plan, updatePlan } = usePlanDaysStore();
+
   return (
-    <div className="w-full flex flex-col items-center gap-2  text-black h-full ">
-      <h1 className="text-4xl font-bold text-center">برنامه روزانه</h1>
-      <Line />
-      <div className="w-full h-screen overflow-y-auto">
-        <div className="w-full h-fit flex flex-col items-center justify-center gap-2">
-          {plan.map((item: OneDayPlanType) => (
+    <div className="flex flex-col min-h-1/2 max-h-full items-center w-full gap-6 p-4 text-black bg-amber-50/30 backdrop-blur-md rounded-2xl">
+      <h1 className="text-3xl font-bold text-center text-amber-900">
+        daily plan
+      </h1>
+
+      <div className="w-full h-full overflow-y-auto space-y-4">
+        {plan.map((item: OneDayPlanType) => {
+          const isOpen = showPlan === item.day;
+
+          return (
             <div
               key={item.day}
-              className={clsx(
-                "flex flex-col w-[90%]  duration-300 rounded-md overflow-hidden",
-                showPlan === item.day ? "h-fit" : "h-10"
-              )}
+              className="rounded-xl bg-white/60 border border-amber-300 backdrop-blur p-4 shadow-sm transition-all duration-300"
               dir="rtl"
             >
-              <div className="flex justify-between items-center gap-4 p-3 bg-amber-900/40 w-full h-10">
-                <h1 className="text-2xl font-bold "> روز {item.day}</h1>
-                <button
-                  onClick={() =>
-                    setShowPlan((prev) => (prev === item.day ? null : item.day))
-                  }
-                  className=" p-2 "
-                >
-                  <Image
-                    src={"/assets/icons/down.svg"}
-                    alt="add"
-                    width={30}
-                    height={30}
-                  />
-                </button>
-              </div>
-              <div className="flex flex-col p-3  bg-amber-900/40 w-full h-fit">
-                {showPlan && (
-                  <>
-                    <div className="flex flex-col justify-between items-start gap-2">
-                      <h2 className="text-lg font-bold">صبح</h2>
-                      <textarea
-                        className="w-full h-14 bg-amber-50/40 rounded-md p-2"
-                        placeholder="صبحانه"
-                        defaultValue={item.morning}
-                        onChange={(e) =>
-                          updatePlan(item.day, "morning", e.target.value)
+              <button
+                onClick={() => setShowPlan(isOpen ? null : item.day)}
+                className="flex justify-between items-center w-full cursor-pointer"
+              >
+                <h2 className="text-xl font-semibold text-amber-900">
+                  day {item.day}
+                </h2>
+                <ChevronDown
+                  className={clsx("transition-transform duration-300", {
+                    "rotate-180": isOpen,
+                  })}
+                />
+              </button>
+
+              {isOpen && (
+                <div className="mt-4 space-y-4">
+                  {[
+                    {
+                      label: "morning",
+                      field: "morning",
+                      placeholder: "plan for the morning",
+                    },
+                    {
+                      label: "afternoon",
+                      field: "afternoon",
+                      placeholder: "plan for the afternoon",
+                    },
+                    {
+                      label: "night",
+                      field: "night",
+                      placeholder: "plan for the night",
+                    },
+                  ].map(({ label, field, placeholder }) => (
+                    <div key={field}>
+                      <label className="text-sm font-medium text-amber-800">
+                        {label}
+                      </label>
+                      <Textarea
+                        placeholder={placeholder}
+                        defaultValue={
+                          item[field as keyof OneDayPlanType] as string
                         }
+                        onChange={(e) =>
+                          updatePlan(item.day, field, e.target.value)
+                        }
+                        className="bg-white/70 border border-amber-200 focus:ring-amber-400"
                       />
                     </div>
-                    <div className="flex flex-col justify-between items-start gap-2">
-                      <h2 className="text-lg font-bold">ظهر</h2>
-                      <textarea
-                        className="w-full h-14 bg-amber-50/40 rounded-md p-2"
-                        placeholder="موزه"
-                        defaultValue={item.afternoon}
-                        onChange={(e) =>
-                          updatePlan(item.day, "afternoon", e.target.value)
-                        }
-                      />
-                    </div>
-                    <div className="flex flex-col justify-between items-start gap-2">
-                      <h2 className="text-lg font-bold">شب</h2>
-                      <textarea
-                        className="w-full h-14 bg-amber-50/40 rounded-md p-2"
-                        placeholder="رستوران"
-                        defaultValue={item.night}
-                        onChange={(e) =>
-                          updatePlan(item.day, "night", e.target.value)
-                        }
-                      />
-                    </div>
-                  </>
-                )}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
+
       <div
         className={clsx(
-          "w-full flex justify-center relative bottom-2 gap-1  items-center",
+          "flex flex-col sm:flex-row items-center gap-2 justify-center w-full max-w-md p-4",
           plan.length ? "visible" : "hidden"
         )}
         dir="rtl"
-      >
-        <input
-          type="text"
-          className="  bg-amber-50/40 text-2xl  text-center p-2 w-30 border-b-2 border-amber-900"
-          placeholder="اسم سفر"
-          onChange={(e) => setPlanTitle(e.target.value)}
-        />
-        <button
-          className={clsx(
-            "text-2xl w-28 font-bold h-full hover:bg-amber-900/40 transition-all duration-300 flex justify-center items-center gap-2"
-          )}
-          onClick={() => {
-            handleSaveProject();
-          }}
-        >
-          <Image
-            src={"/assets/icons/pen.svg"}
-            alt="save"
-            width={30}
-            height={30}
-          />
-          ذخیره
-        </button>
-      </div>
+      ></div>
+      <SubmitBtn
+        title={"done"}
+        onSubmit={() => {
+          handleSaveProject;
+        }}
+        disabled={!plan.length}
+      />
     </div>
   );
 };

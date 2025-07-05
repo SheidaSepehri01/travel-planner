@@ -5,15 +5,16 @@ import { ApiState } from "./utiles";
 
 export type PlanData = {
   title: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
   budget: number;
   necessities: PackingListType[];
   days: OneDayPlanType[];
   costs: CostType[];
 };
 export type UsePlansType = {
-  ApiState: ApiState;
+  getPlansApiState: ApiState;
+  setPlanApiState: ApiState;
   planList: PlanData[] | null;
   error: string | null;
   setPlan: () => Promise<void>;

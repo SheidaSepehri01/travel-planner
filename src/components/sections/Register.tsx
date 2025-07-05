@@ -89,7 +89,7 @@ export const Register = () => {
         alt="door"
         className="w-1/2 h-full object-cover hidden md:block"
         placeholder="blur"
-        blurDataURL="/assets/images/mapblur.jpg"
+        blurDataURL="/assets/images/loginBg2blur.jpg"
         sizes="100vw"
       />
     </div>

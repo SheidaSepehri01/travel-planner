@@ -2,18 +2,29 @@ import { PlanDaysStoreType } from "../types/planDays";
 import { create } from "zustand";
 export const usePlanDaysStore = create<PlanDaysStoreType>((set) => ({
   title: "",
-  startDate: "",
-  endDate: "",
+  startDate: null,
+  endDate: null,
   plan: [],
-  setPlan: (num: number) => {
-    const plan = Array.from({ length: num }, (_, i) => ({
-      day: i + 1,
-      morning: "",
-      afternoon: "",
-      night: "",
-    }));
-    set(() => ({
-      plan: plan,
+  setPlan: () => {
+    set((state) => ({
+      plan: Array.from(
+        {
+          length:
+            state.startDate &&
+            state.endDate &&
+            state.endDate?.getDate() > state.startDate?.getDate()
+              ? Math.floor(
+                  state.endDate?.getDate() - state.startDate?.getDate()
+                )
+              : 0,
+        },
+        (_, i) => ({
+          day: i + 1,
+          morning: "",
+          afternoon: "",
+          night: "",
+        })
+      ),
     }));
   },
   updatePlan: (num, key, value) =>
@@ -23,7 +34,7 @@ export const usePlanDaysStore = create<PlanDaysStoreType>((set) => ({
       ),
     })),
   setPlanTitle: (title: string) => set(() => ({ title })),
-  setStartDate: (startDate: string) => set(() => ({ startDate })),
-  setEndDate: (endDate: string) => set(() => ({ endDate })),
+  setStartDate: (startDate: Date) => set(() => ({ startDate })),
+  setEndDate: (endDate: Date) => set(() => ({ endDate })),
   resetPlan: () => set(() => ({ plan: [] })),
 }));
