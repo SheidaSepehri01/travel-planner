@@ -62,17 +62,17 @@ export const BudgetPlanning = (props: { onSubmit: () => void }) => {
               <Label className="text-lg">Total Budget</Label>
               <Input
                 type="number"
-                value={totalBudget}
+                value={totalBudget || 0}
                 onChange={(e) => setBudget(Number(e.target.value))}
               />
               <div className="grid grid-cols-2 gap-4 mt-4">
                 <div>
                   <Label>Total Cost</Label>
-                  <Input value={totalCost} readOnly />
+                  <Input value={totalCost || 0} readOnly />
                 </div>
                 <div>
                   <Label>Remaining</Label>
-                  <Input value={rest} readOnly />
+                  <Input value={rest || 0} readOnly />
                 </div>
               </div>
             </div>
@@ -117,14 +117,14 @@ export const BudgetPlanning = (props: { onSubmit: () => void }) => {
                 <Input
                   type="number"
                   className="w-24"
-                  value={cost.amount}
+                  value={cost.amount || 0}
                   onChange={(e) =>
                     updateCost({ ...cost, amount: Number(e.target.value) })
                   }
                 />
                 <Input
                   placeholder="Expense name"
-                  value={cost.name}
+                  value={cost.name || ""}
                   onChange={(e) =>
                     updateCost({ ...cost, name: e.target.value })
                   }

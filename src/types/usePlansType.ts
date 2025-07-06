@@ -16,7 +16,8 @@ export type UsePlansType = {
   getPlansApiState: ApiState;
   setPlanApiState: ApiState;
   planList: PlanData[] | null;
-  error: string | null;
+  getPlansErr: string | null;
+  setPlansErr: string | null;
   setPlan: () => Promise<void>;
   getPlans: () => Promise<void>;
 };

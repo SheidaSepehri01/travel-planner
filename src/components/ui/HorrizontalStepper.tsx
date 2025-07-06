@@ -18,7 +18,7 @@ export default function HorizontalStepper(props: PropTypes) {
       <div className="flex items-center justify-between relative ">
         {steps.map((step, index) => (
           <div key={index} className="flex text-center relative w-full ">
-            {index && (
+            {!!index && (
               <div
                 className={cn(
                   " z-10 absolute top-4 -left-1/2 w-full h-0.5 ",

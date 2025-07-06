@@ -1,6 +1,5 @@
 "use client";
-import { useFormState } from "react-hook-form";
-import { usePlanDaysStore } from "../../stores/planDays";
+
 import { usePlans } from "../../stores/plans";
 import { BasicNecessities } from "../layouts/BasicNecessities";
 import { BudgetPlanning } from "../layouts/BudgetPlanning";
@@ -13,7 +12,6 @@ import { Button } from "../ui/button";
 import { TripInfoForm } from "../layouts/TripInfoForm";
 
 export const AddPlan = () => {
-  const { setPlan } = usePlans();
   const [currentStep, setCurrentStep] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const handleNextForm = () =>
@@ -50,7 +48,7 @@ export const AddPlan = () => {
           {currentStep === 0 && <TripInfoForm onSubmit={handleNextForm} />}
           {currentStep === 1 && <BasicNecessities onSubmit={handleNextForm} />}
           {currentStep === 2 && <BudgetPlanning onSubmit={handleNextForm} />}
-          {currentStep === 3 && <DailyPlan handleSaveProject={setPlan} />}
+          {currentStep === 3 && <DailyPlan />}
         </div>
         {/* Navigation Buttons */}
       </div>

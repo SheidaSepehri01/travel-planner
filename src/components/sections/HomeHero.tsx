@@ -45,9 +45,12 @@ export const HomeHero = () => {
               plan your trips and keep track of your budget, most importantly
               keep your trips memory.
             </p>
-            <Link className=" px-4 mt-8" href={user ? "/addPlan" : "/register"}>
+            <Link
+              className=" px-4 mt-8"
+              href={user ? "/addAPlan" : "/register"}
+            >
               <ButtonStylish
-                title="start planning your next trip now"
+                children={"start planning your next trip now"}
                 action={() => {}}
               />
             </Link>

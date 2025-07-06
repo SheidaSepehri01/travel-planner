@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { ButtonStylish } from "../ui/ButtonStylish";
 
 type propTypes = {
   ApiState: "loading" | "success" | "error" | "idle";
@@ -51,7 +52,7 @@ export const LoginForm = (props: propTypes) => {
         onSubmit={form.handleSubmit((data) => {
           handleSubmit(data);
         })}
-        className="w-full h-full "
+        className="w-full h-full space-y-3"
       >
         <FormField
           control={form.control}
@@ -86,24 +87,21 @@ export const LoginForm = (props: propTypes) => {
             </FormItem>
           )}
         />
-
-        <Button
-          type="submit"
-          variant={ApiState === "loading" ? "secondary" : "outline"}
-          className="w-full"
-        >
-          {ApiState === "loading" ? (
-            <Image
-              src={"/assets/icons/load.svg"}
-              alt="loading"
-              className="animate-spin"
-              width={20}
-              height={20}
-            />
-          ) : (
-            "Login"
-          )}{" "}
-        </Button>
+        <div className="w-full h-max flex justify-end items-center">
+          <ButtonStylish action={() => {}}>
+            {ApiState === "loading" ? (
+              <Image
+                src={"/assets/icons/load.svg"}
+                alt="loading"
+                className="animate-spin"
+                width={20}
+                height={20}
+              />
+            ) : (
+              "Login"
+            )}{" "}
+          </ButtonStylish>
+        </div>
       </form>
     </Form>
   );

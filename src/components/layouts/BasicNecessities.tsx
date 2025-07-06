@@ -30,7 +30,7 @@ export const BasicNecessities = (props: { onSubmit: () => void }) => {
                 }
               />
               <Input
-                value={item.title}
+                value={item.title || ""}
                 onChange={(e) => updateItem({ ...item, title: e.target.value })}
                 className={clsx("flex-1", {
                   "line-through text-muted-foreground": item.done,

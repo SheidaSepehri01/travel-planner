@@ -49,7 +49,7 @@ export const TripInfoForm = ({ onSubmit }: Props) => {
           <Input
             type="text"
             placeholder="trip to Italy"
-            value={title}
+            value={title || ""}
             onChange={(e) => setPlanTitle(e.target.value)}
             className="mt-1 bg-white/80 border border-amber-300"
           />

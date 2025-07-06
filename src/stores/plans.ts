@@ -10,12 +10,13 @@ export const usePlans = create<UsePlansType>((set) => ({
   getPlansApiState: "idle",
   setPlanApiState: "idle",
   planList: null,
-  error: null,
+  getPlansErr: null,
+  setPlansErr: null,
   setPlan: async () => {
     const { startDate, endDate, title, plan } = usePlanDaysStore.getState();
     const { totalBudget, costs } = useBudgetStore.getState();
     const { items } = usePackingListStore.getState();
-
+    debugger;
     const sendData: PlanData = {
       title: title,
       startDate: startDate!,
@@ -39,12 +40,15 @@ export const usePlans = create<UsePlansType>((set) => ({
         });
       }
     } catch (err) {
+      debugger;
       if (axios.isAxiosError(err)) {
         set({
+          setPlansErr: err.response?.data.error.details || "An error occurred",
           setPlanApiState: "error",
         });
       } else {
         set({
+          setPlansErr: "An error occurred",
           setPlanApiState: "error",
         });
       }
@@ -63,18 +67,18 @@ export const usePlans = create<UsePlansType>((set) => ({
       set({
         planList: response.data.data.plans,
         getPlansApiState: "success",
-        error: null,
+        getPlansErr: null,
       });
     } catch (err: unknown) {
       console.error("Get plans error:", err);
       if (axios.isAxiosError(err)) {
         set({
-          error: err.response?.data.message || "An error occurred",
+          getPlansErr: err.response?.data.message || "An error occurred",
           getPlansApiState: "error",
         });
       } else {
         set({
-          error: "An error occurred",
+          getPlansErr: "An error occurred",
           getPlansApiState: "error",
         });
       }

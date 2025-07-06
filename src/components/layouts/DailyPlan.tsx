@@ -5,21 +5,15 @@ import { useState } from "react";
 import clsx from "clsx";
 import { OneDayPlanType } from "../../types/planDays";
 import { usePlanDaysStore } from "../../stores/planDays";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ChevronDown } from "lucide-react";
-import { SubmitBtn } from "../ui/SubmitBtn";
-import plans from "../../app/plans/page";
-
-export const DailyPlan = ({
-  handleSaveProject,
-}: {
-  handleSaveProject: () => void;
-}) => {
+import { usePlans } from "../../stores/plans";
+import { ButtonStylish } from "../ui/ButtonStylish";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alart";
+export const DailyPlan = () => {
   const [showPlan, setShowPlan] = useState<number | null>(1);
   const { plan, updatePlan } = usePlanDaysStore();
-
+  const { setPlan, setPlanApiState, setPlansErr } = usePlans();
   return (
     <div className="flex flex-col min-h-1/2 max-h-full items-center w-full gap-6 p-4 text-black bg-amber-50/30 backdrop-blur-md rounded-2xl">
       <h1 className="text-3xl font-bold text-center text-amber-900">
@@ -99,13 +93,26 @@ export const DailyPlan = ({
         )}
         dir="rtl"
       ></div>
-      <SubmitBtn
-        title={"done"}
-        onSubmit={() => {
-          handleSaveProject;
-        }}
-        disabled={!plan.length}
-      />
+      <ButtonStylish action={setPlan}>
+        {setPlanApiState === "loading" ? (
+          <Image
+            src={"/assets/icons/load.svg"}
+            alt="loading"
+            className="animate-spin"
+            width={20}
+            height={20}
+          />
+        ) : (
+          "create plan"
+        )}{" "}
+      </ButtonStylish>
+      <Alert variant="default | destructive">
+        <Terminal />
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>
+          You can add components and dependencies to your app using the cli.
+        </AlertDescription>
+      </Alert>
     </div>
   );
 };
