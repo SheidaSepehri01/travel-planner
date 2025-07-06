@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ChevronDown } from "lucide-react";
 import { usePlans } from "../../stores/plans";
 import { ButtonStylish } from "../ui/ButtonStylish";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alart";
+
 export const DailyPlan = () => {
   const [showPlan, setShowPlan] = useState<number | null>(1);
   const { plan, updatePlan } = usePlanDaysStore();
