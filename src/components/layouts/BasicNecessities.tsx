@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Trash2, Plus, ChevronDown } from "lucide-react";
+import { Trash2, Plus } from "lucide-react";
 import clsx from "clsx";
 import { SubmitBtn } from "../ui/SubmitBtn";
 
