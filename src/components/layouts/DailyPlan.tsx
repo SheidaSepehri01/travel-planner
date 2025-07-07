@@ -13,7 +13,7 @@ import { ButtonStylish } from "../ui/ButtonStylish";
 export const DailyPlan = () => {
   const [showPlan, setShowPlan] = useState<number | null>(1);
   const { plan, updatePlan } = usePlanDaysStore();
-  const { setPlan, setPlanApiState, setPlansErr } = usePlans();
+  const { setPlan, setPlanApiState } = usePlans();
   return (
     <div className="flex flex-col min-h-1/2 max-h-full items-center w-full gap-6 p-4 text-black bg-amber-50/30 backdrop-blur-md rounded-2xl">
       <h1 className="text-3xl font-bold text-center text-amber-900">

@@ -15,7 +15,6 @@ export const HomeHero = () => {
   const sectionRef = useRef<null | HTMLDivElement>(null);
   const headerRef = useRef<null | HTMLDivElement>(null);
   const { user } = useAuthStore();
-  const router = useRouter();
 
   useGSAP(() => {
     gsap.from(headerRef.current, {

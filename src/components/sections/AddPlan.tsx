@@ -1,6 +1,5 @@
 "use client";
 
-import { usePlans } from "../../stores/plans";
 import { BasicNecessities } from "../layouts/BasicNecessities";
 import { BudgetPlanning } from "../layouts/BudgetPlanning";
 import { DailyPlan } from "../layouts/DailyPlan";
