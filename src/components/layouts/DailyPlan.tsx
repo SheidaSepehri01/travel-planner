@@ -106,13 +106,6 @@ export const DailyPlan = () => {
           "create plan"
         )}{" "}
       </ButtonStylish>
-      <Alert variant="default | destructive">
-        <Terminal />
-        <AlertTitle>Heads up!</AlertTitle>
-        <AlertDescription>
-          You can add components and dependencies to your app using the cli.
-        </AlertDescription>
-      </Alert>
     </div>
   );
 };
