@@ -10,7 +10,6 @@ import { ButtonStylish } from "../ui/ButtonStylish";
 const playwrite = Playwrite_RO({
   variable: "--font-playwrite",
 });
-import { useRouter } from "next/navigation";
 export const HomeHero = () => {
   const sectionRef = useRef<null | HTMLDivElement>(null);
   const headerRef = useRef<null | HTMLDivElement>(null);
@@ -48,10 +47,9 @@ export const HomeHero = () => {
               className=" px-4 mt-8"
               href={user ? "/addAPlan" : "/register"}
             >
-              <ButtonStylish
-                children={"start planning your next trip now"}
-                action={() => {}}
-              />
+              <ButtonStylish action={() => {}}>
+                start planning your next trip now
+              </ButtonStylish>
             </Link>
           </div>
         </div>
